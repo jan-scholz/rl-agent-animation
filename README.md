@@ -2,7 +2,7 @@
 
 This interactive JavaScript animation demonstrates how an agent interacts with its environment in the context of the reinforcement learning paradigm. This is solely a visualization of the agent-environment interaction loop without any learning.
 
-![Agent-Environment Interaction Visualization](https://talesofindustry.org/images/github/agent-environment-interaction.png width=400)
+<img src="https://talesofindustry.org/images/github/agent-environment-interaction.png" alt="Agent-Environment Interaction Visualization" width="400">
 
 ## Features
 
