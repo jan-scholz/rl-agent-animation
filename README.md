@@ -26,9 +26,9 @@ Then open `http://localhost:8000` in your preferred browser.
 
 ## Explanation
 
-The agent starts at the starting square 'S' and needs to reach the goal square '🏁'. There is a penalty of -1 for each movement that is used in reinforcement learning to steer agent towards the most direct path toward their goal. In other words, the highest total reward can be obtained by reaching the goal in the least number of steps. In this case, with no obstacles, the goal can be reached in 6 steps in many equivalent ways, so the the best total reward is 5, i.e. 5 steps with -1 penalty and the final step with +10 reward (-1 * 5 + 10).
+The agent starts at the starting square 'S' and needs to reach the goal square '🏁'. There is a penalty of -1 for each movement that is used in reinforcement learning to steer agent towards the most direct path toward their goal. In other words, the highest total reward can be obtained by reaching the goal in the least number of steps. In this case, with no obstacles, the goal can be reached in 6 steps in many equivalent ways, so the best total reward is 5, i.e. 5 steps with -1 penalty each and the final step onto the goal with a +10 reward.
 
-A penalty of -10 when selecting a move that would lead outside the maze is used during reinforcement learning to dissuade the agent from taking "forbidden" actions, i.e. learn not to try to move into a wall.
+When selecting a move that would lead outside the maze a penalty of -10 is applied. This is used during reinforcement learning to dissuade the agent from taking "forbidden" actions, i.e. learn not to try to move into a wall.
 
 
 ## Issues
