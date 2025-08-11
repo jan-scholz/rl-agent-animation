@@ -10,8 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const stateCircle = document.getElementById('animation-circle');
     const rewardCircle = document.getElementById('animation-circle-2');
     const timeIndicator = document.querySelector('.time-indicator');
-    const actionLabel = document.querySelector('text[x="400"]');
-    const rewardLabel = document.querySelector('text[x="100"]');
+    const actionLabel = document.getElementById('action-arrow-label');
+    const stateLabel = document.getElementById('state-arrow-label');
+    const rewardLabel = document.getElementById('reward-arrow-label');
 
     const gridSize = 4;
     let agentPosition = { x: 0, y: 0 };
