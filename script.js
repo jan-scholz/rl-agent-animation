@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cell.classList.add('agent-position');
             }
         });
-        stateIndicator.textContent = `Position: (${agentPosition.x}, ${agentPosition.y})`;
+        stateIndicator.textContent = `State: (${agentPosition.x}, ${agentPosition.y})`;
         rewardIndicator.textContent = `Reward: ${totalReward}`;
         timeIndicator.textContent = `t=${time}`;
     }
