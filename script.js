@@ -143,20 +143,12 @@ document.addEventListener('DOMContentLoaded', () => {
         time = 0;
         updateAgentPosition(); // Update agent position and indicators
 
-        // Clear reward values from maze cells
-        const cells = document.querySelectorAll('.maze-cell');
-        cells.forEach(cell => {
-            // Only clear if it's not a start or goal cell, or if it's not 'S' or '🏁'
-            if (!cell.classList.contains('start-cell') && !cell.classList.contains('goal-cell')) {
-                cell.textContent = '';
-            } else if (cell.textContent !== 'S' && cell.textContent !== '🏁') {
-                cell.textContent = '';
-            }
-        });
-
         // Reset action and reward labels
         actionLabel.textContent = 'action';
         rewardLabel.textContent = 'reward';
+
+        // Recreate the maze to reset all cell contents, including 'S' and '🏁'
+        createMaze();
     }
 
     clearButton.addEventListener('click', resetSimulation); // New line
