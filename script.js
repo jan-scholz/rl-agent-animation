@@ -6,8 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const downButton = document.getElementById('down');
     const leftButton = document.getElementById('left');
     const rightButton = document.getElementById('right');
-    const animationCircle = document.getElementById('animation-circle');
-    const animationCircle2 = document.getElementById('animation-circle-2');
+    const actionCircle = document.getElementById('animation-circle-3');
+    const stateCircle = document.getElementById('animation-circle');
+    const rewardCircle = document.getElementById('animation-circle-2');
     const timeIndicator = document.querySelector('.time-indicator');
     const actionLabel = document.querySelector('text[x="400"]');
     const rewardLabel = document.querySelector('text[x="100"]');
@@ -54,41 +55,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function moveAgent(dx, dy, actionSymbol) {
         time++;
+        const oldX = agentPosition.x;
+        const oldY = agentPosition.y;
         const newX = agentPosition.x + dx;
         const newY = agentPosition.y + dy;
 
         let reward = 0;
 
-        if (newX < 0 || newX >= gridSize || newY < 0 || newY >= gridSize) {
-            reward = -10;
-            totalReward += reward;
-            actionLabel.textContent = `action ${actionSymbol}`;
-            rewardLabel.textContent = `reward ${reward}`;
-            updateAgentPosition();
-            return;
-        }
+        // Clear labels
+        actionLabel.textContent = 'action';
+        rewardLabel.textContent = 'reward';
 
-        if (newX === gridSize - 1 && newY === gridSize - 1) {
-            reward = 10;
-        } else {
-            reward = -1;
-        }
+        // Action animation
+        actionCircle.classList.add('action-animation');
 
-        // Animate the circles
-        animationCircle.classList.add('state-animation');
-        animationCircle2.classList.add('reward-animation');
-
-        // Update position and reward after animation
         setTimeout(() => {
-            agentPosition.x = newX;
-            agentPosition.y = newY;
-            totalReward += reward;
-            updateAgentPosition();
+            actionCircle.classList.remove('action-animation');
             actionLabel.textContent = `action ${actionSymbol}`;
-            rewardLabel.textContent = `reward ${reward}`;
-            animationCircle.classList.remove('state-animation');
-            animationCircle2.classList.remove('reward-animation');
-        }, 500); // Duration of the animation
+
+            if (newX < 0 || newX >= gridSize || newY < 0 || newY >= gridSize) {
+                reward = -10;
+                totalReward += reward;
+                rewardLabel.textContent = `reward ${reward}`;
+                updateAgentPosition();
+                return;
+            }
+
+            if (newX === gridSize - 1 && newY === gridSize - 1) {
+                reward = 10;
+            } else {
+                reward = -1;
+            }
+
+            // State and Reward animations
+            stateCircle.classList.add('state-animation');
+            rewardCircle.classList.add('reward-animation');
+
+            setTimeout(() => {
+                agentPosition.x = newX;
+                agentPosition.y = newY;
+                totalReward += reward;
+                updateAgentPosition();
+                rewardLabel.textContent = `reward ${reward}`;
+                stateCircle.classList.remove('state-animation');
+                rewardCircle.classList.remove('reward-animation');
+            }, 330); // Duration of state/reward animation
+
+        }, 330); // Duration of action animation
     }
 
     upButton.addEventListener('click', () => moveAgent(0, -1, '↑'));

@@ -32,7 +32,7 @@ body {
 
 .time-indicator {
     position: absolute;
-    top: 185px;
+    top: 190px;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 1.5em;
@@ -117,7 +117,7 @@ body {
     background-color: #fff9c4;
 }
 
-#animation-circle, #animation-circle-2 {
+#animation-circle, #animation-circle-2, #animation-circle-3 {
     position: absolute;
     width: 20px;
     height: 20px;
@@ -126,12 +126,29 @@ body {
     visibility: hidden;
 }
 
+.action-animation {
+    animation: move-along-action-arrow 0.33s forwards;
+}
+
 .state-animation {
-    animation: move-along-state-arrow 0.5s forwards;
+    animation: move-along-state-arrow 0.33s forwards;
 }
 
 .reward-animation {
-    animation: move-along-reward-arrow 0.5s forwards;
+    animation: move-along-reward-arrow 0.33s forwards;
+}
+
+@keyframes move-along-action-arrow {
+    0% {
+        offset-path: path("M 335 90 H 450 V 380 H 405");
+        offset-distance: 0%;
+        visibility: visible;
+    }
+    100% {
+        offset-path: path("M 335 90 H 450 V 380 H 405");
+        offset-distance: 100%;
+        visibility: hidden;
+    }
 }
 
 @keyframes move-along-state-arrow {
