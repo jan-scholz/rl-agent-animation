@@ -18,9 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let agentPosition = { x: 0, y: 0 };
     let totalReward = 0;
     let time = 0;
+    let mazeRewards = []; // New line: Declare mazeRewards
 
     function createMaze() {
         mazeContainer.innerHTML = '';
+        mazeRewards = Array(gridSize).fill(0).map(() => Array(gridSize).fill(0)); // New line: Initialize mazeRewards
         for (let y = 0; y < gridSize; y++) {
             for (let x = 0; x < gridSize; x++) {
                 const cell = document.createElement('div');
@@ -78,6 +80,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 reward = -10;
                 totalReward += reward;
                 rewardLabel.textContent = `reward ${reward}`;
+
+                // Add penalty to the current cell's accumulated reward
+                mazeRewards[agentPosition.y][agentPosition.x] += reward; // Add penalty to the current cell
+                const currentAgentCell = document.querySelector('.maze-cell.agent-position');
+                if (currentAgentCell) {
+                    let cellContent = '';
+                    if (currentAgentCell.classList.contains('start-cell')) {
+                        cellContent = 'S';
+                    } else if (currentAgentCell.classList.contains('goal-cell')) {
+                        cellContent = '🏁';
+                    }
+                    currentAgentCell.textContent = `${cellContent} ${mazeRewards[agentPosition.y][agentPosition.x]}`;
+                }
+
                 updateAgentPosition();
                 return;
             }
@@ -96,15 +112,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 agentPosition.x = newX;
                 agentPosition.y = newY;
                 totalReward += reward;
+                mazeRewards[newY][newX] += reward; // New line: Accumulate reward in mazeRewards
                 updateAgentPosition();
                 rewardLabel.textContent = `reward ${reward}`;
                 stateCircle.classList.remove('state-animation');
                 rewardCircle.classList.remove('reward-animation');
 
-                // Add reward value to the current maze cell
+                // Update the current maze cell with accumulated reward, preserving 'S' and '🏁'
                 const currentAgentCell = document.querySelector('.maze-cell.agent-position');
                 if (currentAgentCell) {
-                    currentAgentCell.textContent = reward;
+                    let cellContent = '';
+                    if (currentAgentCell.classList.contains('start-cell')) {
+                        cellContent = 'S';
+                    } else if (currentAgentCell.classList.contains('goal-cell')) {
+                        cellContent = '🏁';
+                    }
+                    // Append the accumulated reward
+                    currentAgentCell.textContent = `${cellContent} ${mazeRewards[newY][newX]}`;
                 }
             }, 330); // Duration of state/reward animation
 
