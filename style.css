@@ -32,11 +32,12 @@ body {
 
 .time-indicator {
     position: absolute;
-    top: 50%;
+    top: 185px;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 1.5em;
     color: #666;
+    z-index: 1;
 }
 
 .agent-container {
