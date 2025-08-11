@@ -100,6 +100,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 rewardLabel.textContent = `reward ${reward}`;
                 stateCircle.classList.remove('state-animation');
                 rewardCircle.classList.remove('reward-animation');
+
+                // Add reward value to the current maze cell
+                const currentAgentCell = document.querySelector('.maze-cell.agent-position');
+                if (currentAgentCell) {
+                    currentAgentCell.textContent = reward;
+                }
             }, 330); // Duration of state/reward animation
 
         }, 330); // Duration of action animation
