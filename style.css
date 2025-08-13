@@ -3,7 +3,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f0f0f0;
+    background-color: #fff;
 }
 
 .container {
@@ -106,7 +106,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5em;
+    font-size: 1.35em;
 }
 
 .start-cell {
@@ -153,12 +153,12 @@ body {
 
 @keyframes move-along-state-arrow {
     0% {
-        offset-path: path("M 115 390 H 50 V 90 H 125");
+        offset-path: path("M 115 390 H 50 V 90 H 135");
         offset-distance: 0%;
         visibility: visible;
     }
     100% {
-        offset-path: path("M 115 390 H 50 V 90 H 125");
+        offset-path: path("M 115 390 H 50 V 90 H 135");
         offset-distance: 100%;
         visibility: hidden;
     }
@@ -166,19 +166,19 @@ body {
 
 @keyframes move-along-reward-arrow {
     0% {
-        offset-path: path("M 115 370 H 70 V 130 H 125");
+        offset-path: path("M 115 370 H 70 V 130 H 135");
         offset-distance: 0%;
         visibility: visible;
     }
     100% {
-        offset-path: path("M 115 370 H 70 V 130 H 125");
+        offset-path: path("M 115 370 H 70 V 130 H 135");
         offset-distance: 100%;
         visibility: hidden;
     }
 }
 
 .agent-position {
-    background-color: #ffb74d;
+    background-color: #a0c4ff;
 }
 
 .controls {
